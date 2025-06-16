@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enter Your Matcha Era</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #faf8f4;
+      font-family: 'Segoe UI', sans-serif;
+      color: #2e2e2e;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .form-card {
+      background: #fffdf9;
+      border: 1px solid #e6dfd1;
+      border-radius: 8px;
+      padding: 64px 40px;
+      max-width: 460px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      text-align: center;
+    }
+
+    .form-card h2 {
+      font-size: 28px;
+      color: #5f8222;
+      margin-bottom: 24px;
+    }
+
+    .form-card p {
+      font-size: 16px;
+      color: #7b6d59;
+      margin-bottom: 40px;
+      line-height: 1.75;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    input[type="email"] {
+      padding: 18px;
+      width: 100%;
+      border: 1px solid #ddd2be;
+      border-radius: 8px;
+      font-size: 16px;
+      background: #fff;
+      color: #444;
+      box-sizing: border-box;
+    }
+
+    input[type="email"]::placeholder {
+      color: #aaa;
+    }
+
+    button {
+      background-color: #5f8222;
+      color: white;
+      border: none;
+      padding: 18px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #486515;
+    }
+
+    #response {
+      margin-top: 28px;
+      font-size: 14px;
+      color: #8a6363;
+    }
+
+    @media (max-width: 480px) {
+      .form-card {
+        padding: 48px 28px;
+      }
+
+      .form-card h2 {
+        font-size: 24px;
+      }
+
+      .form-card p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-card">
+    <h2>Enter Your Matcha Era</h2>
+    <p>Get early access to product drops, pop-up invites, and more. Let’s elevate your matcha experience 🍵💕</p>
+    <form id="emailForm">
+      <input type="email" id="email" placeholder="you@empressmatcha.com" required />
+      <button type="submit">Enter Your Era</button>
+    </form>
+    <p id="response"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('emailForm');
+    const emailInput = document.getElementById('email');
+    const responseText = document.getElementById('response');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value;
+
+      try {
+        const res = await fetch('http://127.0.0.1:8000/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await res.json();
+        responseText.textContent = data.message;
+        emailInput.value = '';
+      } catch (err) {
+        responseText.textContent = 'Something went wrong. Try again.';
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
