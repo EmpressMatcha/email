@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <title>Enter Your Matcha Era</title>
   <style>
     html, body {
@@ -19,6 +19,8 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .form-card {
@@ -26,15 +28,16 @@
       border: 1px solid #e6dfd1;
       border-radius: 8px;
       padding: 64px 40px;
-      max-width: 460px;
       width: 100%;
+      max-width: 460px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
       text-align: center;
+      box-sizing: border-box;
     }
 
     .form-card h2 {
       font-size: 28px;
-      color: #5f8222;
+      color: #6b8c4f;
       margin-bottom: 24px;
     }
 
@@ -67,7 +70,7 @@
     }
 
     button {
-      background-color: #5f8222;
+      background-color: #5f8222; /* your brand matcha green */
       color: white;
       border: none;
       padding: 18px;
@@ -80,18 +83,18 @@
     }
 
     button:hover {
-      background-color: #486515;
+      background-color: #4f6d1c;
     }
 
     #response {
       margin-top: 28px;
       font-size: 14px;
-      color: #8a6363;
+      color: #6d8a63;
     }
 
     @media (max-width: 480px) {
       .form-card {
-        padding: 48px 28px;
+        padding: 48px 24px;
       }
 
       .form-card h2 {
@@ -101,13 +104,23 @@
       .form-card p {
         font-size: 15px;
       }
+
+      button {
+        font-size: 15px;
+        padding: 16px;
+      }
+
+      input[type="email"] {
+        padding: 16px;
+        font-size: 15px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="form-card">
     <h2>Enter Your Matcha Era</h2>
-    <p>Get early access to product drops, pop-up invites, and more. Let’s elevate your matcha experience 🍵💕</p>
+    <p>Get early access to product drops, events, and more. Let’s elevate your matcha experience 🍵💕</p>
     <form id="emailForm">
       <input type="email" id="email" placeholder="you@empressmatcha.com" required />
       <button type="submit">Enter Your Era</button>
